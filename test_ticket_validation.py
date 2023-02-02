@@ -1,12 +1,15 @@
 #Ticket 1
 def test_check_that_the_file_loads():
     #ARRANGE
+    from app import getfile
     filename='results.csv'
-    expected_rows = 25
+    expected_rows = 26
     expected_titles = ['user_id','first_name','last_name','answer_1','answer_2','answer_3']
     #ACT
-
+    data = getfile(filename)
     #ASSERT
+    assert len(data) == expected_rows
+    assert data[0] == expected_titles
 
 #Ticket 2
 def test_remove_duplicated_responses():
