@@ -11,20 +11,27 @@ def test_check_that_the_file_loads():
     assert len(data) == expected_rows
     assert data[0] == expected_titles
 
-#Ticket 2
-def test_remove_duplicated_responses():
+#Ticket 2 and 3
+def test_remove_duplicated_responses_and_null_rows():
     #ARRANGE
     from app import getfile, dataclean
     filename='results.csv'
-    expected_rows = 20 #duplicate free 21, Blank free 20
+    cleanedfile='cleanedresults.csv'
+    expected_rows = 20 #duplicate free, Blank free
+    expected_titles = ['user_id','first_name','last_name','answer_1','answer_2','answer_3']
     #ACT
     cleaneddata = dataclean(filename)
+    data = getfile(cleanedfile)
     #ASSERT
     assert len(cleaneddata) == expected_rows
+    assert cleaneddata.isnull().values.any() == False
+    assert len(data) == expected_rows+1 #Due to difference with array and dataframe
+    assert data[0] == expected_titles
 
 
 #Ticket 3
 def test_confirm_blank_lines_ignored():
+    #covered in test_remove_duplicated_responses_and_null_rows
     pass
 
 #Ticket 4
