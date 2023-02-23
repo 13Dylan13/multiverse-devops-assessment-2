@@ -30,6 +30,7 @@ def test_confirm_blank_lines_ignored():
 
 #Ticket 4
 def test_confirm_capitalisation_applied():
+    import numpy as np
     from app import getfile, caps
     filename='results.csv'
     cappeddata = []
@@ -40,7 +41,7 @@ def test_confirm_capitalisation_applied():
     data = caps(data)
     #ASSERT
     assert len(data) == expected_rows
-    assert data[0] == expected_titles
+    assert np.all(data[0] == expected_titles)
     
 
 #Ticket 5
