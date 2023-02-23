@@ -14,15 +14,14 @@ def test_check_that_the_file_loads():
 #Ticket 2
 def test_remove_duplicated_responses():
     #ARRANGE
-    from app import getfile
-    from app import deduplicate
+    from app import getfile, dataclean
     filename='results.csv'
-    expected_rows = 26
+    expected_rows = 20 #duplicate free 21, Blank free 20
     #ACT
-    data = getfile(filename)
-    deduped_data = deduplicate(data)
+    cleaneddata = dataclean(filename)
     #ASSERT
-    assert len(deduped_data) == expected_rows
+    assert len(cleaneddata) == expected_rows
+
 
 #Ticket 3
 def test_confirm_blank_lines_ignored():

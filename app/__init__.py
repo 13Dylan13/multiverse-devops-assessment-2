@@ -9,11 +9,16 @@ def getfile(filename):
  
     return data
 
-def deduplicate(data):
-    deduped_data = list(dict.fromkeys(data))
-    return deduped_data
+def dataclean(filename): #this needs to run on the user id
+    import pandas as pd
+    import numpy as np
+    cleaneddata = pd.read_csv(filename)
+    cleaneddata = cleaneddata.dropna(how='all') #drop blank rows
+    cleaneddata.drop_duplicates(subset=['user_id'], keep='first', inplace=True) #drop duplicates
+    return cleaneddata
+    
 
-def caps(data):
+def caps(data): 
     import numpy as np
     data = np.char.capitalize(data)
     return data
