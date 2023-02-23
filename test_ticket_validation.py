@@ -13,7 +13,16 @@ def test_check_that_the_file_loads():
 
 #Ticket 2
 def test_remove_duplicated_responses():
-    pass
+    #ARRANGE
+    from app import getfile
+    from app import deduplicate
+    filename='results.csv'
+    expected_rows = 26
+    #ACT
+    data = getfile(filename)
+    deduped_data = deduplicate(data)
+    #ASSERT
+    assert len(deduped_data) == expected_rows
 
 #Ticket 3
 def test_confirm_blank_lines_ignored():
@@ -21,7 +30,18 @@ def test_confirm_blank_lines_ignored():
 
 #Ticket 4
 def test_confirm_capitalisation_applied():
-    pass
+    from app import getfile, caps
+    filename='results.csv'
+    cappeddata = []
+    expected_rows = 26
+    expected_titles = ['User_id','First_name','Last_name','Answer_1','Answer_2','Answer_3']
+    #ACT
+    data = getfile(filename)
+    data = caps(data)
+    #ASSERT
+    assert len(data) == expected_rows
+    assert data[0] == expected_titles
+    
 
 #Ticket 5
 def test_answer_3_validation():

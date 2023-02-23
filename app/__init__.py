@@ -8,3 +8,12 @@ def getfile(filename):
             data.append(row)
  
     return data
+
+def deduplicate(data):
+    deduped_data = list(dict.fromkeys(data))
+    return deduped_data
+
+def caps(data):
+    import numpy as np
+    data = np.char.capitalize(data)
+    return data
