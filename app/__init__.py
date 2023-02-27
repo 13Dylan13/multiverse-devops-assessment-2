@@ -8,8 +8,9 @@ def getfile(filename):
             data.append(row)
     return data
 
-def dataclean(filename): #this needs to run on the user id
-    import pandas as pd
+def dataclean(filename): #this needs to run on the user id 
+    #need to update to work in the array
+    import pandas as pd 
     import numpy as np
     cleaneddata = pd.read_csv(filename)
     cleaneddata = cleaneddata.dropna(how='all') #drop blank rows
