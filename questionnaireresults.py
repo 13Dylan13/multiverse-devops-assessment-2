@@ -3,12 +3,16 @@ from app import getfile, caps, dataclean
 
 filename='results.csv'
 cleanedfile='cleanedresults.csv'
+
+#clean the data
+#data = dataclean(filename)
 data = getfile(filename)
-data = caps(data)
-data = dataclean(filename)
 print (data)
-nulls = data.isnull().values.any()
-print (nulls)
+data = caps(data)
+print (data)
+
+#validate the data
+#process the data
 
 
 

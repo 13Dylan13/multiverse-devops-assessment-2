@@ -24,9 +24,9 @@ def test_remove_duplicated_responses_and_null_rows():
     data = getfile(cleanedfile)
     #ASSERT
     assert len(cleaneddata) == expected_rows
-    assert cleaneddata.isnull().values.any() == False
+    assert cleaneddata.isnull().values.any() == False #look for any null data left in the file
     assert len(data) == expected_rows+1 #Due to difference with array and dataframe
-    assert data[0] == expected_titles
+    assert data[0] == expected_titles #checking that using dataframes hasn't broken anything
 
 
 #Ticket 3

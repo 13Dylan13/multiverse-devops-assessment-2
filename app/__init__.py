@@ -20,5 +20,10 @@ def dataclean(filename): #this needs to run on the user id
 
 def caps(data): 
     import numpy as np
-    data = np.char.capitalize(data)
+    rowcount=len(data)
+    n = 0
+    while n < rowcount:
+        data[n] = np.char.capitalize(data[n])
+        n = n+1
     return data
+
