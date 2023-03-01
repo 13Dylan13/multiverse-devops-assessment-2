@@ -49,7 +49,7 @@ def removeduplicates(data):
     n=0
     todelete = []
     while n < rowcount-1:
-        if np.all(data[n,0]==data[n+1,0]):
+        if np.all(data[n][0]==data[n+1,0]):
             todelete.append(n+1)
         n=n+1
     #deleterows(data,todelete)
@@ -68,7 +68,7 @@ def question3validation(data):
     n=1 #ignore the titles
     todelete = []
     while n < rowcount-1:
-        if np.all(int(data[n,5]) > 10):
+        if np.all(int(data[n][5]) > 10):
             todelete.append(n)
         n=n+1
         #deleterows(data,todelete)

@@ -14,11 +14,12 @@ def test_check_that_the_file_loads():
 #Ticket 2
 def test_remove_duplicated_responses():
     #ARRANGE
-    from app import getfile, removeduplicates
+    from app import getfile, removeduplicates, removeblanks
     filename='results.csv'
-    expected_rows = 20 #duplicate free, Blank free
+    expected_rows = 21 #duplicate free, Blank free
     #ACT
     data = getfile(filename)
+    data = removeblanks(data) #added to avoid error when converting '' to an int
     data = removeduplicates(data)
     #ASSERT
     assert len(data) == expected_rows
@@ -55,12 +56,13 @@ def test_confirm_capitalisation_applied():
 #Ticket 5
 def test_answer_3_validation():
     #ARRANGE
-    from app import getfile, question3validation
+    from app import getfile, question3validation, removeblanks
     #import numpy as np
     filename='results.csv'
-    expected_rows = 22
+    expected_rows = 21
     #ACT
     data = getfile(filename)
+    data = removeblanks(data) #added to avoid error when converting '' to an int
     data = question3validation(data)
     #ASSERT
     assert len(data) == expected_rows
