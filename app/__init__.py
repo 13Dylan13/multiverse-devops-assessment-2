@@ -85,3 +85,9 @@ def output_results(data):
     with open('clean_results.csv','w+', newline='') as my_csv:
         csvWriter = csv.writer(my_csv,delimiter=',')
         csvWriter.writerows(data)
+
+def formatForPrinting(data):
+    from tabulate import tabulate
+    print(tabulate(data, headers="firstrow"))
+
+

@@ -90,4 +90,15 @@ def test_output_file_creation():
 
 #Ticket 7
 def test_display_clean_results():
-    pass
+    #ARRANGE
+    from app import getfile,removeblanks,caps,removeduplicates,question3validation, formatForPrinting
+    filename='results.csv'
+    #ACT
+    data = getfile(filename)
+    data = caps(data)
+    data = removeblanks(data) 
+    data = removeduplicates(data)
+    data = question3validation(data)
+    #ASSERT
+    formatForPrinting(data)
+    
