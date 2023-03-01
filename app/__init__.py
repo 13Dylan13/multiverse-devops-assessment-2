@@ -79,3 +79,9 @@ def question3validation(data):
         todelete= todelete[:-1] #remove deleted item from the to delete list
         n=n+1
     return data    
+
+def output_results(data):
+    import csv
+    with open('clean_results.csv','w+', newline='') as my_csv:
+        csvWriter = csv.writer(my_csv,delimiter=',')
+        csvWriter.writerows(data)

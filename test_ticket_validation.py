@@ -69,7 +69,25 @@ def test_answer_3_validation():
 
 #Ticket 6
 def test_output_file_creation():
-    pass
+    #ARRANGE
+    from app import getfile, output_results
+    import time
+    import numpy as np
+    filename='results.csv'
+    cleanedFilename='clean_results.csv'
+    expected_rows = 26
+    expected_titles = ['user_id','first_name','last_name','answer_1','answer_2','answer_3']
+    last_row = ['20','Felicia','Wilkins','yes','b','8']
+    #ACT
+    data = getfile(filename)
+    output_results(data)
+    cleaneddata = getfile(cleanedFilename)
+    #ASSERT
+    assert len(cleaneddata) == expected_rows
+    assert np.all(cleaneddata[0] == expected_titles)
+    assert np.all(cleaneddata[25] == last_row)
+    #could add a time creation check
+    
 
 #Ticket 7
 def test_display_clean_results():
