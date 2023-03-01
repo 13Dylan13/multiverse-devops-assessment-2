@@ -71,7 +71,6 @@ def test_answer_3_validation():
 def test_output_file_creation():
     #ARRANGE
     from app import getfile, output_results
-    import time
     import numpy as np
     filename='results.csv'
     cleanedFilename='clean_results.csv'
