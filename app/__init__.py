@@ -50,7 +50,6 @@ def question3validation(data):
         if np.all(int(data[n][5]) > 10):
             todelete.append(n)
         n=n+1
-        #deleterows(data,todelete)
     deletecount=len(todelete)
     n=0
     while n < deletecount:
@@ -68,6 +67,42 @@ def output_results(data):
 def formatForPrinting(data):
     from tabulate import tabulate
     print(tabulate(data, headers="firstrow"))
-
-
     
+
+
+def check_for_blanks(data): 
+    #created for testing only
+    nulls = 0
+    rowcount = len(data)
+    n = 0
+    while n < rowcount:
+        if data[n] == ['', '', '', '', '', '']:
+            nulls=nulls+1
+        n=n+1
+    return nulls
+
+def checkforduplicates(data):
+    #created for testing only
+    #The test data is sorted by user id... this assumes this is true for all input data
+    import numpy as np
+    rowcount = len(data)
+    duplicatesfound = 0
+    n=0
+    while n < rowcount-1:
+        if np.all(data[n][0]==data[n+1][0]):
+            duplicatesfound = duplicatesfound+1
+        n=n+1
+    n=0
+    return duplicatesfound    
+
+def checkforinvalidQ3answers(data):
+    #created for testing only
+    import numpy as np
+    invalidanswers = 0
+    rowcount = len(data)
+    n=1 #ignore the titles
+    while n < rowcount-1:
+        if np.all(int(data[n][5]) > 10):
+            invalidanswers = invalidanswers+1
+        n=n+1
+    return invalidanswers

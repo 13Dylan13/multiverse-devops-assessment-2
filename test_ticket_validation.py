@@ -1,24 +1,27 @@
 #Ticket 1 and 3
 def test_check_that_the_file_loads():
     #ARRANGE
-    from app import getfile
+    from app import getfile, check_for_blanks
     filename='results.csv'
     expected_titles = ['user_id','first_name','last_name','answer_1','answer_2','answer_3']
     #ACT
     data = getfile(filename)
+    nulls = check_for_blanks(data)
     #ASSERT
     assert data[0] == expected_titles
+    assert nulls == 0
 
 #Ticket 2 
 def test_duplicate_entries_removed():
-    from app import getfile,removeduplicates
+    from app import getfile,removeduplicates, checkforduplicates
     #ARRANGE
     filename='results.csv'
     #ACT
     data = getfile(filename)
     data = removeduplicates(data)
+    duplicatesfound = checkforduplicates(data)
     #ASSERT
-    #maybe look for duplicates: possible could of user id
+    assert duplicatesfound == 0
     
 #Ticket 4
 def test_confirm_capitalisation_applied():
@@ -36,15 +39,15 @@ def test_confirm_capitalisation_applied():
 #Ticket 5
 def test_answer_3_validation():
     #ARRANGE
-    from app import getfile, question3validation
+    from app import getfile, question3validation, checkforinvalidQ3answers
     #import numpy as np
     filename='results.csv'
-    expected_rows = 21
     #ACT
     data = getfile(filename)
     data = question3validation(data)
+    invalidanswers = checkforinvalidQ3answers(data)
     #ASSERT
-    #run test on answers
+    assert invalidanswers == 0
 
 #Ticket 6
 def test_output_file_creation():
@@ -58,10 +61,12 @@ def test_output_file_creation():
     data = getfile(filename)
     output_results(data)
     cleaneddata = getfile(cleanedFilename)
+    cleanedrowcount = len(cleaneddata)
+    initialrowcount = len(data)
     #ASSERT
     assert len(cleaneddata) == len(data)
     assert np.all(cleaneddata[0] == expected_titles)
-    #assert np.all(cleaneddata[23] == last_row) change to compare specific rows
+    assert cleanedrowcount == initialrowcount
     #could add a time creation check
     
 
