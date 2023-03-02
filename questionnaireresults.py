@@ -1,10 +1,9 @@
 import sys
-from app import getfile, caps, removeblanks, removeduplicates, question3validation, formatForPrinting, output_results
+from app import caps, removeduplicates, question3validation, formatForPrinting, output_results, getfile
 
 filename='results.csv'
 
 data = getfile(filename)
-data = removeblanks(data)
 data = caps(data)
 data = removeduplicates(data)
 data = question3validation(data)
