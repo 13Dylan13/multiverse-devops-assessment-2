@@ -1,25 +1,39 @@
 #Ticket 1 and 3
 def test_check_that_the_file_loads():
     #ARRANGE
-    from app import getfile, check_for_blanks
+    from app import getfile
     filename='results.csv'
     expected_titles = ['user_id','first_name','last_name','answer_1','answer_2','answer_3']
+    nulls = 0
+    n = 0
     #ACT
     data = getfile(filename)
-    nulls = check_for_blanks(data)
+    rowcount = len(data)
+    while n < rowcount:
+        if data[n] == ['', '', '', '', '', '']:
+            nulls=nulls+1
+        n=n+1
     #ASSERT
     assert data[0] == expected_titles
     assert nulls == 0
 
 #Ticket 2 
 def test_duplicate_entries_removed():
-    from app import getfile,removeduplicates, checkforduplicates
+    from app import getfile,removeduplicates
     #ARRANGE
     filename='results.csv'
+    import numpy as np
+    duplicatesfound = 0
     #ACT
     data = getfile(filename)
     data = removeduplicates(data)
-    duplicatesfound = checkforduplicates(data)
+    rowcount = len(data)
+    n=0
+    while n < rowcount-1:
+        if np.all(data[n][0]==data[n+1][0]):
+            duplicatesfound = duplicatesfound+1
+        n=n+1
+    n=0
     #ASSERT
     assert duplicatesfound == 0
     
@@ -39,13 +53,19 @@ def test_confirm_capitalisation_applied():
 #Ticket 5
 def test_answer_3_validation():
     #ARRANGE
-    from app import getfile, question3validation, checkforinvalidQ3answers
-    #import numpy as np
+    from app import getfile, question3validation
+    import numpy as np
     filename='results.csv'
     #ACT
     data = getfile(filename)
     data = question3validation(data)
-    invalidanswers = checkforinvalidQ3answers(data)
+    invalidanswers = 0
+    rowcount = len(data)
+    n=1 #ignore the titles
+    while n < rowcount-1:
+        if np.all(int(data[n][5]) > 10):
+            invalidanswers = invalidanswers+1
+        n=n+1
     #ASSERT
     assert invalidanswers == 0
 
