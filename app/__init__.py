@@ -63,9 +63,11 @@ def output_results(data):
     with open('clean_results.csv','w+', newline='') as my_csv:
         csvWriter = csv.writer(my_csv,delimiter=',')
         csvWriter.writerows(data)
+    print ("Cleaned data saved as: clean_results.csv\n")
 
 def formatForPrinting(data):
     from tabulate import tabulate
+    print("\n Cleaned data: \n")
     print(tabulate(data, headers="firstrow"))
     
 
