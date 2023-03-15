@@ -30,4 +30,4 @@ jobs:
 
     - name: Run pytest
       run : pytest
-      working-directory: python-survey-app
+      working-directory: mvtools/python-survey-app
