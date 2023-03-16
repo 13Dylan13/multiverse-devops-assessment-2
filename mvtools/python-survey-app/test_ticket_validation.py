@@ -2,7 +2,7 @@
 def test_check_that_the_file_loads():
     #ARRANGE
     from app import getfile
-    filename='results.csv'
+    filename='../terraform-iac/results.csv'
     expected_titles = ['user_id','first_name','last_name','answer_1','answer_2','answer_3']
     nulls = 0
     n = 0
@@ -21,7 +21,7 @@ def test_check_that_the_file_loads():
 def test_duplicate_entries_removed():
     from app import getfile,removeduplicates
     #ARRANGE
-    filename='results.csv'
+    filename='../terraform-iac/results.csv'
     import numpy as np
     duplicatesfound = 0
     #ACT
@@ -41,7 +41,7 @@ def test_duplicate_entries_removed():
 def test_confirm_capitalisation_applied():
     import numpy as np
     from app import getfile, caps
-    filename='results.csv'
+    filename='../terraform-iac/results.csv'
     expected_titles = ['User_id','First_name','Last_name','Answer_1','Answer_2','Answer_3']
     #ACT
     data = getfile(filename)
@@ -55,7 +55,7 @@ def test_answer_3_validation():
     #ARRANGE
     from app import getfile, question3validation
     import numpy as np
-    filename='results.csv'
+    filename='../terraform-iac/results.csv'
     #ACT
     data = getfile(filename)
     data = question3validation(data)
@@ -74,7 +74,7 @@ def test_output_file_creation():
     #ARRANGE
     from app import getfile, output_results
     import numpy as np
-    filename='results.csv'
+    filename='../terraform-iac/results.csv'
     cleanedFilename='clean_results.csv'
     expected_titles = ['user_id','first_name','last_name','answer_1','answer_2','answer_3']
     #ACT
@@ -94,7 +94,7 @@ def test_output_file_creation():
 def test_display_clean_results():
     #ARRANGE
     from app import getfile, caps,removeduplicates,question3validation, formatForPrinting
-    filename='results.csv'
+    filename='../terraform-iac/results.csv'
     #ACT
     data = getfile(filename)
     data = caps(data)

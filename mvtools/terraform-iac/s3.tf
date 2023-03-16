@@ -15,6 +15,6 @@ resource "aws_s3_bucket_acl" "this" {
 resource "aws_s3_object" "this" {
     bucket                  = aws_s3_bucket.this.id
     key                     = "results.csv"
-    source                  = "${path.module}/resuts.csv"
+    source                  = "${path.module}/results.csv"
     etag                    = filemd5("${path.module}/results.csv")
 }
