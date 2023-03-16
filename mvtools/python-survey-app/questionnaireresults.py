@@ -1,7 +1,7 @@
 import sys
 from app import caps, removeduplicates, question3validation, formatForPrinting, output_results, getfile
 
-filename='results.csv'
+filename='../terraform-iac/results.csv'
 
 data = getfile(filename)
 data = caps(data)
