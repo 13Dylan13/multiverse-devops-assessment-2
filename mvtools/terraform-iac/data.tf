@@ -26,12 +26,12 @@ data "aws_ami" "amazon_linux" {
         values = ["ebs"]
     }
 
-filter {
+    filter {
         name = "virtualization-type"
         values = ["hvm"]
     }
 
-filter {
+    filter {
         name = "architecture"
         values = ["x86_64"]
     }

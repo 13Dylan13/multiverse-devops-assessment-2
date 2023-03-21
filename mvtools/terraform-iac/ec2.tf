@@ -12,7 +12,7 @@ resource "aws_lb" "this" {
 
 resource "aws_lb_listener" "http" { 
     load_balancer_arn       = aws_lb.this.arn
-    port                    = "80"
+    port                    = 80
     protocol                = "HTTP"
 
     default_action {
@@ -23,7 +23,7 @@ resource "aws_lb_listener" "http" {
 
 resource "aws_lb_target_group" "http" {
     name_prefix             = "mvws9"
-    port                    = "80"
+    port                    = 80
     protocol                = "HTTP"
     vpc_id                  = aws_vpc.this.id
     deregistration_delay    = 0
@@ -34,8 +34,7 @@ resource "aws_launch_template" "this" {
     image_id                = data.aws_ami.amazon_linux.id
     instance_type           = "t3.micro"
     update_default_version  = true
-
-    user_data               = base64encode (
+    user_data               = base64encode(
         templatefile (
             "${path.module}/ec2-userdata.tftpl",
             { s3_bucket = aws_s3_bucket.this.id }
