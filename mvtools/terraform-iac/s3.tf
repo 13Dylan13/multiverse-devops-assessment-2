@@ -1,6 +1,6 @@
 resource "aws_s3_bucket" "this" { 
     bucket_prefix           = "mvws9-dylan-rickerby" 
-    force_destroy           = true
+    force_destroy           = false
 
     tags = {
         Name                = "multiverse"
