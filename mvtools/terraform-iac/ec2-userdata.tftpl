@@ -46,7 +46,7 @@ aws s3 cp s3://${s3_bucket}/code.zip /tmp/code.zip
 unzip /tmp/code.zip -d /root/code/
 aws s3 cp s3://${s3_bucket}/results.csv /root/code/mvtools/terraform-iac/results.csv 
 cd
-cd code/mvtools/python-survey-app
+cd root/code/mvtools/python-survey-app
 pwd > /root/code/whereIam.txt
 aws s3 cp /root/code/whereIam.txt s3://${s3_bucket}/whereIam.txt
 python3 questionnaireresults.py > /root/code/results_latest.txt
