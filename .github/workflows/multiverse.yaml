@@ -29,7 +29,7 @@ jobs:
       run : pip install numpy tabulate sqlite3 sys sqldb
 
     - name: Add SQL Libraries
-      run : pip install sqlite3 sys sqldb
+      run : pip install sys sqldb
 
     - name: Run pytest
       run : pytest
