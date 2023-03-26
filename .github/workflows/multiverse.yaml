@@ -26,7 +26,7 @@ jobs:
       run : pip install pytest pytest-cov
 
     - name: Add required system libraries
-      run : pip install numpy tabulate sqlite3 sys sqldb
+      run : pip install numpy tabulate
 
     - name: Add SQL Libraries
       run : pip install sys sqldb
