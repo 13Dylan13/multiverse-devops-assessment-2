@@ -28,6 +28,9 @@ jobs:
     - name: Add required system libraries
       run : pip install numpy tabulate sqlite3 sys sqldb
 
+    - name: Add SQL Libraries
+      run : pip install sqlite3 sys sqldb
+
     - name: Run pytest
       run : pytest
       working-directory: python-survey-app
