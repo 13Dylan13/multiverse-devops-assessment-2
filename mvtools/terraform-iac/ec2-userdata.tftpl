@@ -46,7 +46,7 @@ aws s3 cp s3://${s3_bucket}/code.zip /tmp/code.zip
 unzip /tmp/code.zip -d /root/code/
 aws s3 cp s3://${s3_bucket}/results.csv /root/code/mvtools/python-survey-app/results.csv 
 cd
-cd code
+cd code/mvtools
 ls -a > /root/code/hereIam.txt
 aws s3 cp /root/code/hereIam.txt s3://${s3_bucket}/hereIam.txt
 python3 /root/code/mvtools/python-survey-app/questionnaireresults.py > /root/code/results_latest.txt
