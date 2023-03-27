@@ -28,16 +28,19 @@ jobs:
     - name: Add required system libraries
       run : pip install numpy tabulate
 
+    - name: Add SQL Libraries
+      run : pip install sqldb
+
     - name: Run pytest
       run : pytest
-      working-directory: mvtools/python-survey-app
+      working-directory: python-survey-app
 
   terraform:
     name: Run Terraform
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: mvtools/terraform-iac
+        working-directory: terraform-iac
     permissions:
       contents: write
     steps:
@@ -73,5 +76,5 @@ jobs:
         github.event_name != 'pull_request'
       with:
         add:  '*.tfstate*'
-        cwd:  './mvtools/terraform-iac'
+        cwd:  './terraform-iac'
         message: 'Adding the up-to-date Terraform state file'

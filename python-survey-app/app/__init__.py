@@ -68,6 +68,38 @@ def output_results(data):
 def formatForPrinting(data):
     from tabulate import tabulate
     print("\n Cleaned data: \n")
-    print(tabulate(data, headers="firstrow"))
+    print(tabulate(data, headers=("User ID", "First Name", "Last Name", "Answer 1", "Answer 2", "Answer 3")))
     
+def create_answers_table(db):
+    db.execute('''
+        CREATE TABLE IF NOT EXISTS answers(
+            user_id TEXT NOT NULL PRIMARY KEY,
+            first_name TEXT,
+            last_name TEXT,
+            answer_1 TEXT,
+            answer_2 TEXT,
+            answer_3 TEXT NOT NULL
+        ); ''')
+    
+def insert_data(db, table, data):
+    db.executemany(f'INSERT OR IGNORE INTO {table} VALUES (?, ?, ?, ?, ?, ?)', data) 
+    db.commit()
 
+def select_all(db, table):
+    cursor = db.execute(f'SELECT * FROM {table}') 
+    result = cursor.fetchall()
+    return(result)
+
+def describe_table(db, table):
+    cursor = db.execute(f'SELECT sql FROM sqlite_schema WHERE name = "{table}"') 
+    result = cursor.fetchone()
+    print(result[0])
+
+def show_tables(db): 
+    cursor = db.execute('''
+        SELECT name
+        FROM sqlite_schema
+        WHERE type ='table' AND name NOT LIKE 'sqlite_%'
+    ''')
+    result = cursor.fetchall() 
+    print(result)
