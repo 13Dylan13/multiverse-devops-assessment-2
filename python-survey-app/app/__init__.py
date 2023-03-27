@@ -104,10 +104,18 @@ def describe_table(db, table):
     return(result)
 
 def show_tables(db): 
-    cursor = db.execute('''
-        SELECT name
-        FROM sqlite_schema
-        WHERE type ='table' AND name NOT LIKE 'sqlite_%'
-    ''')
+    from sqlite3 import OperationalError
+    try:
+        cursor = db.execute('''
+            SELECT name
+            FROM sqlite_schema
+            WHERE type ='table' AND name NOT LIKE 'sqlite_%'
+        ''')
+    except OperationalError:
+        cursor = db.execute('''
+            SELECT name
+            FROM sqlite_schema
+            WHERE type ='table' AND name NOT LIKE 'sqlite_%'
+        ''')
     result = cursor.fetchall() 
     print(result)
