@@ -4,6 +4,8 @@ from app import *
 
 def main():
     db = sqlite3.connect('answers.db')
+    create_answers_table(db)
+    show_tables(db)
     describe_table(db,'answers')
     data = select_all(db, 'answers')
     output_results(data)

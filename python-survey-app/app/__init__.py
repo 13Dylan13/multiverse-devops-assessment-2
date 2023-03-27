@@ -91,9 +91,11 @@ def select_all(db, table):
     return(result)
 
 def describe_table(db, table):
-    cursor = db.execute(f'SELECT sql FROM sqlite_schema WHERE name = "{table}"') 
+    cursor = db.execute(
+        f'SELECT sql FROM sqlite_schema WHERE name = "{table}"'
+        ) 
     result = cursor.fetchone()
-    print(result[0])
+    return(result)
 
 def show_tables(db): 
     cursor = db.execute('''
