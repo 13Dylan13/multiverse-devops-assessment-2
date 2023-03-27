@@ -45,10 +45,11 @@ mkdir -p /root/code
 aws s3 cp s3://${s3_bucket}/code.zip /tmp/code.zip
 unzip /tmp/code.zip -d /root/code/
 aws s3 cp s3://${s3_bucket}/results.csv /root/code/mvtools/python-survey-app/results.csv 
-python3 /root/code/python-survey-app/Read_In.py
-python3 /root/code/python-survey-app/Output.py > /root/code/results_latest.txt
+cd code/python-survey-app
+python3 Read_In.py
+python3 Output.py > /root/code/results_latest.txt
 aws s3 cp /root/code/results_latest.txt s3://${s3_bucket}/results_latest.txt
-python3 /root/code/python-survey-app/Output.py 2> /root/code/error.txt
+python3 Output.py 2> /root/code/error.txt
 aws s3 cp /root/code/error.txt s3://${s3_bucket}/error.txt
 EOT
 
