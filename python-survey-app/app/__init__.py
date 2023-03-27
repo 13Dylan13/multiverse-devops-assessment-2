@@ -118,4 +118,4 @@ def show_tables(db):
             WHERE type ='table' AND name NOT LIKE 'sqlite_%'
         ''')
     result = cursor.fetchall() 
-    print(result)
+    return(result)
