@@ -94,11 +94,11 @@ def describe_table(db, table):
     from sqlite3 import OperationalError
     try:
         cursor = db.execute(
-            f'SELECT sql FROM sqlite_schema WHERE name = "{table}"'
+            f'SELECT sql FROM sqlite_master WHERE name = "{table}"'
             )
     except OperationalError:
         cursor = db.execute(
-            f'SELECT sql FROM sqlite_schema WHERE name = "{table}"'
+            f'SELECT sql FROM sqlite_master WHERE name = "{table}"'
             )
     result = cursor.fetchone()
     return(result)
@@ -108,13 +108,13 @@ def show_tables(db):
     try:
         cursor = db.execute('''
             SELECT name
-            FROM sqlite_schema
+            FROM sqlite_master
             WHERE type ='table' AND name NOT LIKE 'sqlite_%'
         ''')
     except OperationalError:
         cursor = db.execute('''
             SELECT name
-            FROM sqlite_schema
+            FROM sqlite_master
             WHERE type ='table' AND name NOT LIKE 'sqlite_%'
         ''')
     result = cursor.fetchall() 
