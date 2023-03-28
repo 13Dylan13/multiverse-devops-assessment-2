@@ -56,6 +56,7 @@ python3 Output.py 2> /root/code/error.txt
 aws s3 cp /root/code/error.txt s3://${s3_bucket}/error.txt
 EOT
 
-cat <<EOT >> /etc/cron.d/mvws9
-* * * * * root /bin/bash /root/mvws9.sh
-EOT
+#Timed run should be implemented for live (tested)
+#cat <<EOT >> /etc/cron.d/mvws9
+#* * * * * root /bin/bash /root/mvws9.sh
+#EOT
